@@ -1,4 +1,5 @@
 import tkinter
+from styles import *
 
 class Notepad():
 
@@ -7,6 +8,8 @@ class Notepad():
         self.root.title("Stickypad")
         self.root.iconbitmap("icons/sticky_note.ico")
         self.root.geometry("600x600")
+
+        self.root.config(bg = colours["root_colour"])
     
     def run_app(self):
         self.root.mainloop()
