@@ -76,6 +76,15 @@ class Notepad():
         self.font_family_drop.bind("<<ComboboxSelected>>", self.change_font)
 
         return self.font_family_drop
+    
+    def create_font_option_drop(self):
+        self.font_option_drop = ttk.Combobox(self.menu_frame, state = "readonly", value = font_options,
+                                            font = ("Cambria", 10), justify = "center", height = 15)
+        
+        self.font_option_drop.set("normal")
+        self.font_option_drop.bind("<<ComboboxSelected>>", self.change_font)
+
+        return self.font_option_drop
 
     # BUTTON AND SLIDER FUNCTIONALITY
 
