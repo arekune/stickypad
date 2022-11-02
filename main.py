@@ -41,6 +41,11 @@ class Notepad():
         self.font_family_drop.grid(row = 0, column = 5, padx = 5, pady = 5)
         self.font_option_drop.grid(row = 0, column = 6, padx = 5, pady = 5)
         self.highlight_check.grid(row = 0, column = 7, padx = 5, pady = 5)
+
+        # Add text input
+        self.text_input = self.create_text_input()
+
+        self.text_input.pack()
     
     # APP LAYOUT
 
