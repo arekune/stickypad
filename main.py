@@ -85,6 +85,16 @@ class Notepad():
         self.font_option_drop.bind("<<ComboboxSelected>>", self.change_font)
 
         return self.font_option_drop
+    
+    def create_highlight_check(self):
+        self.highlight = IntVar()
+        self.highlight_check = tkinter.Checkbutton(self.menu_frame, variable = self.highlight,
+                                                    onvalue = 1, offvalue = 0, text = "Text highlighting",
+                                                    justify = "right", height = 2, width = 10)
+        
+        self.highlight.set(0)
+        return self.highlight_check
+
 
     # BUTTON AND SLIDER FUNCTIONALITY
 
