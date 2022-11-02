@@ -39,13 +39,30 @@ class Notepad():
         self.button = tkinter.Button(self.menu_frame, image = self.open_button_image, command = self.open_note)
         return self.button
     
+    def create_save_button(self):
+        self.save_button_image = ImageTk.PhotoImage(Image.open("icons/disk-icon.png"))
+        self.button = tkinter.Button(self.menu_frame, image = self.save_button_image, command = self.save_note)
+        return self.button
+    
+    def create_close_button(self):
+        self.close_button_image = ImageTk.PhotoImage(Image.open("icons/close.png"))
+        self.button = tkinter.Button(self.menu_frame, image = self.close_button_image, command = self.close_note)
+        return self.button
+    
     # BUTTON AND SLIDER FUNCTIONALITY
 
     def new_note(self):
         pass
 
+    def close_note(self):
+        pass
+
+    def save_note(self):
+        pass
+
     def open_note(self):
         pass
+
 
     # RUN PROGRAM
 
