@@ -16,9 +16,13 @@ class Notepad():
     def create_menu_frame(self):
         self.menu_frame = tkinter.Frame(self.root, bg = colours["menu_colour"])
         return self.menu_frame
+    
+    def create_text_frame(self):
+        self.text_frame = tkinter.Frame(self.root, bg = colours["text_colour"])
+        return self.text_frame
 
     # RUN PROGRAM
-    
+
     def run_app(self):
         self.root.mainloop()
 
