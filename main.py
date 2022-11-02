@@ -24,14 +24,14 @@ class Notepad():
         self.new_button = self.create_new_button()
         self.open_button = self.create_open_button()
         self.save_button = self.create_save_button()
-        self.close_button = self.create_close_button()
         self.screenshot_button = self.create_screenshot_button()
+        self.close_button = self.create_close_button()
 
         self.new_button.grid(row = 0, column = 0, padx = 5, pady = 5)
         self.open_button.grid(row = 0, column = 1, padx = 5, pady = 5)
         self.save_button.grid(row = 0, column = 2, padx = 5, pady = 5)
-        self.close_button.grid(row = 0, column = 3, padx = 5, pady = 5)
         self.screenshot_button.grid(row = 0, column = 4, padx = 5, pady = 5)
+        self.close_button.grid(row = 0, column = 3, padx = 5, pady = 5)
     
     # APP LAYOUT
 
@@ -58,14 +58,14 @@ class Notepad():
         self.button = tkinter.Button(self.menu_frame, image = self.save_button_image, command = self.save_note)
         return self.button
     
-    def create_close_button(self):
-        self.close_button_image = ImageTk.PhotoImage(Image.open("icons/close-icon.png"))
-        self.button = tkinter.Button(self.menu_frame, image = self.close_button_image, command = self.close_note)
-        return self.button
-    
     def create_screenshot_button(self):
         self.screenshot_button_image = ImageTk.PhotoImage(Image.open("icons/camera-icon.ong"))
         self.button = tkinter.Button(self.menu_frame, image = self.screenshot_button_image, command = self.take_screenshot)
+        return self.button
+    
+    def create_close_button(self):
+        self.close_button_image = ImageTk.PhotoImage(Image.open("icons/close-icon.png"))
+        self.button = tkinter.Button(self.menu_frame, image = self.close_button_image, command = self.close_note)
         return self.button
     
     # BUTTON AND SLIDER FUNCTIONALITY
