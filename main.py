@@ -18,6 +18,17 @@ class Notepad():
 
         self.menu_frame.pack(padx = 5, pady = 5)
         self.text_frame.pack(padx = 5, pady = 5)
+
+        # Add buttons
+        self.new_button = self.create_new_button()
+        self.open_button = self.create_open_button()
+        self.save_button = self.create_save_button()
+        self.close_button = self.create_close_button()
+
+        self.new_button.grid(row = 0, column = 0, padx = 5, pady = 5)
+        self.open_button.grid(row = 0, column = 1, padx = 5, pady = 5)
+        self.save_button.grid(row = 0, column = 2, padx = 5, pady = 5)
+        self.close_button.grid(row = 0, column = 3, padx = 5, pady = 5)
     
     # APP LAYOUT
 
