@@ -1,4 +1,5 @@
 import tkinter
+from tkinter import ttk, StringVar, IntVar, scrolledtext, messagebox, filedialog, END
 from PIL import ImageTk, Image
 from styles import *
 
@@ -56,7 +57,7 @@ class Notepad():
         return self.button
     
     def create_close_button(self):
-        self.close_button_image = ImageTk.PhotoImage(Image.open("icons/close.png"))
+        self.close_button_image = ImageTk.PhotoImage(Image.open("icons/close-icon.png"))
         self.button = tkinter.Button(self.menu_frame, image = self.close_button_image, command = self.close_note)
         return self.button
     
