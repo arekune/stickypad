@@ -1,4 +1,5 @@
 import tkinter
+from PIL import ImageTk, Image
 from styles import *
 
 class Notepad():
@@ -27,6 +28,24 @@ class Notepad():
     def create_text_frame(self):
         self.text_frame = tkinter.Frame(self.root, bg = colours["text_colour"])
         return self.text_frame
+    
+    def create_new_button(self):
+        self.new_button_image = ImageTk.PhotoImage(Image.open("icons/document-icon.png"))
+        self.button = tkinter.Button(self.menu_frame, image = self.new_button_image, command = self.new_note)
+        return self.button
+    
+    def create_open_button(self):
+        self.open_button_image = ImageTk.PhotoImage(Image.open("icons/folder-open-icon.png"))
+        self.button = tkinter.Button(self.menu_frame, image = self.open_button_image, command = self.open_note)
+        return self.button
+    
+    # BUTTON AND SLIDER FUNCTIONALITY
+
+    def new_note(self):
+        pass
+
+    def open_note(self):
+        pass
 
     # RUN PROGRAM
 
