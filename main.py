@@ -9,7 +9,7 @@ class Notepad():
         self.root = master
         self.root.title("Stickypad")
         self.root.iconbitmap("icons/sticky_note.ico")
-        self.root.geometry("600x600")
+        self.root.geometry("800x600")
 
         self.root.config(bg = colours["root_colour"])
 
@@ -30,8 +30,17 @@ class Notepad():
         self.new_button.grid(row = 0, column = 0, padx = 5, pady = 5)
         self.open_button.grid(row = 0, column = 1, padx = 5, pady = 5)
         self.save_button.grid(row = 0, column = 2, padx = 5, pady = 5)
-        self.screenshot_button.grid(row = 0, column = 4, padx = 5, pady = 5)
-        self.close_button.grid(row = 0, column = 3, padx = 5, pady = 5)
+        self.screenshot_button.grid(row = 0, column = 3, padx = 5, pady = 5)
+        self.close_button.grid(row = 0, column = 4, padx = 5, pady = 5)
+
+        # Add font dropdown menus and text highlight checkbutton
+        self.font_family_drop = self.create_font_family_drop()
+        self.font_option_drop = self.create_font_option_drop()
+        self.highlight_check = self.create_highlight_check()
+
+        self.font_family_drop.grid(row = 0, column = 5, padx = 5, pady = 5)
+        self.font_option_drop.grid(row = 0, column = 6, padx = 5, pady = 5)
+        self.highlight_check.grid(row = 0, column = 7, padx = 5, pady = 5)
     
     # APP LAYOUT
 
@@ -59,7 +68,7 @@ class Notepad():
         return self.button
     
     def create_screenshot_button(self):
-        self.screenshot_button_image = ImageTk.PhotoImage(Image.open("icons/camera-icon.ong"))
+        self.screenshot_button_image = ImageTk.PhotoImage(Image.open("icons/camera-icon.png"))
         self.button = tkinter.Button(self.menu_frame, image = self.screenshot_button_image, command = self.take_screenshot)
         return self.button
     
@@ -89,8 +98,9 @@ class Notepad():
     def create_highlight_check(self):
         self.highlight = IntVar()
         self.highlight_check = tkinter.Checkbutton(self.menu_frame, variable = self.highlight,
-                                                    onvalue = 1, offvalue = 0, text = "Text highlighting",
-                                                    justify = "right", height = 2, width = 10)
+                                                    onvalue = 1, offvalue = 0, text = "Highlighting",
+                                                    justify = "right", height = 2, width = 10,
+                                                    bg = colours["menu_colour"])
         
         self.highlight.set(0)
         return self.highlight_check
