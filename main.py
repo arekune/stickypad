@@ -68,6 +68,15 @@ class Notepad():
         self.button = tkinter.Button(self.menu_frame, image = self.close_button_image, command = self.close_note)
         return self.button
     
+    def create_font_family_drop(self):
+        self.font_family_drop = ttk.Combobox(self.menu_frame, state = "readonly", value = font_families,
+                                            font = ("Cambria", 10), justify = "center", height = 15)
+        
+        self.font_family_drop.set(font_families[0])
+        self.font_family_drop.bind("<<ComboboxSelected>>", self.change_font)
+
+        return self.font_family_drop
+
     # BUTTON AND SLIDER FUNCTIONALITY
 
     def new_note(self):
@@ -85,6 +94,8 @@ class Notepad():
     def take_screenshot(self):
         pass
 
+    def change_font(self):
+        pass
 
     # RUN PROGRAM
 
