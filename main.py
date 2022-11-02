@@ -10,6 +10,13 @@ class Notepad():
         self.root.geometry("600x600")
 
         self.root.config(bg = colours["root_colour"])
+
+        # Add frames
+        self.menu_frame = self.create_menu_frame()
+        self.text_frame = self.create_text_frame()
+
+        self.menu_frame.pack(padx = 5, pady = 5)
+        self.text_frame.pack(padx = 5, pady = 5)
     
     # APP LAYOUT
 
