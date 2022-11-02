@@ -104,6 +104,18 @@ class Notepad():
         
         self.highlight.set(0)
         return self.highlight_check
+    
+    def create_text_input(self):
+        # Define variable for fonts
+        self.chosen_font = (self.font_family.get(), self.font_size.get())
+
+        # Define ScrolledText widget to scroll through the text field
+        # Set default width and height to be more than the window size so that
+        # the text field size is constant relative to root window (i.e. scales with root window)
+        self.text_input = scrolledtext.ScrolledText(self.text_frame, width = 1000, height = 100,
+                                                    bg = colours["text_colour"], font = self.chosen_font)
+        
+        return self.text_input
 
 
     # BUTTON AND SLIDER FUNCTIONALITY
