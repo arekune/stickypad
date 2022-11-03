@@ -31,7 +31,7 @@ class Notepad():
         self.new_button.grid(row = 0, column = 0, padx = (15, 5), pady = 5)
         self.open_button.grid(row = 0, column = 1, padx = 5, pady = 5)
         self.save_button.grid(row = 0, column = 2, padx = (5, 0), pady = 5, sticky = "W")
-        self.screenshot_button.grid(row = 0, column = 3, padx = (0, 15), pady = 5, sticky = "W")
+        self.screenshot_button.grid(row = 0, column = 3, padx = (0, 15), pady = 5, sticky = "E")
         self.close_button.grid(row = 0, column = 4, padx = 5, pady = 5, sticky = "W")
 
         # Add font dropdown menus and text highlight checkbutton
@@ -46,7 +46,12 @@ class Notepad():
         # Add text input field colour selector button
         self.colour_selector_button = self.create_colour_selector_button()
 
-        self.colour_selector_button.grid(row = 1, column = 1, columnspan = 2, padx = 5, pady = 5, ipadx = 5, ipady = 5)
+        self.colour_selector_button.grid(row = 1, column = 0, columnspan = 2, padx = (15, 5), pady = 5, ipadx = 5, ipady = 5)
+
+        # Add reset settings button
+        self.reset_button = self.create_reset_button()
+
+        self.reset_button.grid(row = 1, column = 2, columnspan = 2, padx = 5, pady = 5, ipadx = 5, ipady = 5)
 
         # Add font size slider and font size label to display font size
         self.font_size_slider = self.create_font_size_slider()
@@ -200,7 +205,7 @@ class Notepad():
                                         command = self.reset_all)
         
         return self.reset_button
-        
+
 
     # BUTTON AND SLIDER FUNCTIONALITY
 
