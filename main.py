@@ -193,11 +193,19 @@ class Notepad():
                                                 command = self.change_colour)
         
         return self.colour_selector_button
+    
+    
 
     # BUTTON AND SLIDER FUNCTIONALITY
 
     def change_colour(self):
-        """Change given colour based on dropdown menu options."""
+        """Change text input field colour by choosing custom colour with Tkinter's colour selector."""
+
+        self.colour_selector = colorchooser.askcolor(title = "Colour Selection")
+        self.text_input.config(bg = self.colour_selector[1])
+    
+    def reset_all(self):
+        """Reset all settings to default."""
 
         pass
 
