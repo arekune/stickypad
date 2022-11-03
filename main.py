@@ -220,6 +220,8 @@ class Notepad():
         Save the note as a txt file.
         The first three lines saved to the file are saved as font family, font size, and font option.
         Font size is converted to a string for the file.
+
+        Only the font configurations displayed in the font dropdown menus, font size slider
         """
 
         # Use filedialog (imported from tkinter) to ask user for file path and file name
@@ -239,7 +241,33 @@ class Notepad():
             file.write(self.text_input.get("1.0", END))
 
     def open_note(self):
-        pass
+        """
+        Open a previously saved note.
+        The first three lines of file are the file's specified font family, font size, and font option.
+        """
+
+        question = messagebox.askyesno("Open Note",
+        "Are you sure that you want to open another new note?\nUnsaved changes to current note will be deleted.")
+
+        if question == 1:
+            # Use filedialog to ask user for file path and to choose the file to be opened
+            open_name = filedialog.askopenfilename(initialdir = "./",
+                                                    title = "Open Note",
+                                                    filetypes = (("Text Files", "*.txt"), ("All Files", "*.*")))
+            with open(open_name, "r+") as file:
+                self.text_input.delete("1.0", END)
+
+                # Newline characters at the end of the first three lines need to be stripped
+                self.font_family_drop.set(file.readline().strip())
+                self.font_size.set(int(file.readline().strip()))
+                self.font_option_drop.set(file.readline().strip())
+
+                # Call change_font function for these .set() methods and pass in arbitrary value
+                self.change_font(1)
+
+                # Read the rest of the file and insert into the text field
+                text = file.read()
+                self.text_input.insert("1.0", text)
 
     def take_screenshot(self):
         pass
