@@ -298,7 +298,7 @@ class Notepad():
             # If no text is highlighted for tagging
             pass
     
-    
+
     def underline_tag(self):
         """Underline text.
         
@@ -375,7 +375,7 @@ class Notepad():
         The first three lines saved to the file are saved as font family, font size, and font option.
         Font size is converted to a string for the file.
 
-        Only the font configurations chosen when saving will be preserved and later applied for
+        Only the font configurations chosen when saving will be preserved and later applied to
         a text file opened again as a note in Stickypad.
         """
 
@@ -438,11 +438,24 @@ class Notepad():
 
 
     def take_screenshot(self):
+        """
+        Take screenshot of text input field as a virtual sticky note using Pyautogui.
+        
+        The screenshot will be saved in the local directory as 'screenshot.png'.
+        Any similarly named file will be over written.
+        """
+
         x, y = self.text_input.winfo_rootx(), self.text_input.winfo_rooty()
         w, h = self.text_input.winfo_width(), self.text_input.winfo_height()
         pyautogui.screenshot("screenshot.png", region = (x, y, w, h))
 
+
     def slider_changed(self, event):
+        """
+        Set the font size value label when the slider is moved.
+        'Change_font' function is called to apply the change in font size to text.
+        """
+
         self.font_size_value_label.configure(text = f"{self.font_size.get()}")
         self.change_font(event)
 
