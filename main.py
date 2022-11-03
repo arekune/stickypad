@@ -221,7 +221,12 @@ class Notepad():
     def reset_all(self):
         """Reset all settings to default."""
 
-        pass
+        self.text_input.config(bg = colours["text_colour"])
+        self.font_family_drop.set("Terminal")
+        self.font_option_drop.set("normal")
+        self.font_size.set(12)
+        self.highlight_on.set(0)
+        self.font_size_value_label.configure(text = f"{self.font_size.get()}")
 
     def change_font(self, event):
         """Change text font based on dropdown menu options and font size slider value."""
