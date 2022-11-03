@@ -178,6 +178,20 @@ class Notepad():
                                                 bg = colours["menu_colour"])
         
         return self.font_size_value_label
+    
+    def create_underline_button(self):
+        self.underline_button = ttk.Button(self.menu_frame,
+                                        text = "a͟b͟c͟",
+                                        command = self.underline_tag)
+        
+        return self.underline_button
+    
+    def create_overstrike_button(self):
+        self.overstrike_button = ttk.Button(self.menu_frame,
+                                        text = "a̶b̶c̶",
+                                        command = self.overstrike_tag)
+        
+        return self.overstrike_button
 
     # Text input field and text input colour selector button
     
