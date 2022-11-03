@@ -49,6 +49,8 @@ class Notepad():
     
     # APP LAYOUT
 
+    # Frames
+
     def create_menu_frame(self):
         self.menu_frame = tkinter.Frame(self.root, bg = colours["menu_colour"])
         return self.menu_frame
@@ -56,6 +58,8 @@ class Notepad():
     def create_text_frame(self):
         self.text_frame = tkinter.Frame(self.root, bg = colours["text_colour"])
         return self.text_frame
+
+    # Buttons
     
     def create_new_button(self):
         self.new_button_image = ImageTk.PhotoImage(Image.open("icons/document-icon.png"))
@@ -81,10 +85,15 @@ class Notepad():
         self.close_button_image = ImageTk.PhotoImage(Image.open("icons/close-icon.png"))
         self.button = tkinter.Button(self.menu_frame, image = self.close_button_image, command = self.close_note)
         return self.button
+
+    # Font dropdown menus, sliders and highlighting toggle
     
     def create_font_family_drop(self):
-        self.font_family_drop = ttk.Combobox(self.menu_frame, state = "readonly", value = font_families,
-                                            font = ("Cambria", 10), justify = "center", height = 15)
+        self.font_family_drop = ttk.Combobox(self.menu_frame,
+                                            state = "readonly",
+                                            value = font_families,
+                                            font = ("Cambria", 10),
+                                            justify = "center", height = 15)
         
         self.font_family_drop.set(font_families[0])
         self.font_family_drop.bind("<<ComboboxSelected>>", self.change_font)
@@ -92,8 +101,12 @@ class Notepad():
         return self.font_family_drop
     
     def create_font_option_drop(self):
-        self.font_option_drop = ttk.Combobox(self.menu_frame, state = "readonly", value = font_options,
-                                            font = ("Cambria", 10), justify = "center", height = 15)
+        self.font_option_drop = ttk.Combobox(self.menu_frame,
+                                            state = "readonly",
+                                            value = font_options,
+                                            font = ("Cambria", 10),
+                                            justify = "center",
+                                            height = 15)
         
         self.font_option_drop.set("normal")
         self.font_option_drop.bind("<<ComboboxSelected>>", self.change_font)
@@ -102,23 +115,49 @@ class Notepad():
     
     def create_highlight_check(self):
         self.highlight = IntVar()
-        self.highlight_check = tkinter.Checkbutton(self.menu_frame, variable = self.highlight,
-                                                    onvalue = 1, offvalue = 0, text = "Highlighting",
-                                                    justify = "right", height = 2, width = 10,
+        self.highlight_check = tkinter.Checkbutton(self.menu_frame,
+                                                    variable = self.highlight,
+                                                    onvalue = 1,
+                                                    offvalue = 0,
+                                                    text = "Highlighting",
+                                                    justify = "right",
+                                                    height = 2,
+                                                    width = 10,
                                                     bg = colours["menu_colour"])
         
         self.highlight.set(0)
         return self.highlight_check
     
+    def create_font_size_slider(self):
+        self.font_size = IntVar()
+        self.font_size_slider = ttk.Scale(self.menu_frame,
+                                        from_ = 0,
+                                        to = 100,
+                                        orient = "horizontal",
+                                        variable = self.font_size,
+                                        command = self.slider_changed)
+
+        self.font_size.set(12)
+        return self.font_size_slider
+        
+    def create_font_size_label(self):
+        self.font_size_label = tkinter.Label(self.menu_frame, text = f"Font size: {self.current_value.get()}")
+        return self.font_size_label
+    
+    # Text input field
+    
     def create_text_input(self):
         # Define variable for fonts
-        self.chosen_font = (self.font_family.get(), self.font_size.get())
+        self.chosen_font = (self.font_family_drop.get(), self.font_size.get())
 
         # Define ScrolledText widget to scroll through the text field
         # Set default width and height to be more than the window size so that
         # the text field size is constant relative to root window (i.e. scales with root window)
-        self.text_input = scrolledtext.ScrolledText(self.text_frame, width = 1000, height = 100,
-                                                    bg = colours["text_colour"], font = self.chosen_font)
+        self.text_input = scrolledtext.ScrolledText(self.text_frame,
+                                                    width = 1000,
+                                                    height = 100,
+                                                    bg = colours["text_colour"],
+                                                    font = self.chosen_font)
         
         return self.text_input
 
@@ -143,10 +182,15 @@ class Notepad():
     def change_font(self):
         pass
 
+    def slider_changed(self):
+        pass
+
+
     # RUN PROGRAM
 
     def run_app(self):
         self.root.mainloop()
+
 
 if __name__ == "__main__":
     root = tkinter.Tk()
