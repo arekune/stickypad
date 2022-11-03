@@ -27,7 +27,7 @@ class Notepad():
         self.screenshot_button = self.create_screenshot_button()
         self.close_button = self.create_close_button()
 
-        self.new_button.grid(row = 0, column = 0, padx = 5, pady = 5)
+        self.new_button.grid(row = 0, column = 0, padx = (15, 5), pady = 5)
         self.open_button.grid(row = 0, column = 1, padx = 5, pady = 5)
         self.save_button.grid(row = 0, column = 2, padx = 5, pady = 5)
         self.screenshot_button.grid(row = 0, column = 3, padx = 5, pady = 5)
@@ -199,7 +199,7 @@ class Notepad():
 
         # Use a messagebox to confirm clearing note and creating a new note
         # messagebox module imported from tkinter
-        question = messagebox.askyesno("New Note",
+        question = messagebox.askyesnocancel("New Note",
         "Are you sure that you want to create a new note?\nUnsaved changes to current note will be deleted.")
 
         if question == 1:
@@ -207,7 +207,13 @@ class Notepad():
             self.text_input.delete("1.0", END)
 
     def close_note(self):
-        pass
+        """Close the note and the window (quit program)."""
+
+        question = messagebox.askyesnocancel("Close Note",
+        "Are you sure that you want to close the note?\nUnsaved changes to current note will be deleted.")
+
+        if question == 1:
+            self.root.destroy()
 
     def save_note(self):
         pass
