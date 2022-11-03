@@ -30,9 +30,9 @@ class Notepad():
 
         self.new_button.grid(row = 0, column = 0, padx = (15, 5), pady = 5)
         self.open_button.grid(row = 0, column = 1, padx = 5, pady = 5)
-        self.save_button.grid(row = 0, column = 2, padx = 5, pady = 5)
-        self.screenshot_button.grid(row = 0, column = 3, padx = 5, pady = 5)
-        self.close_button.grid(row = 0, column = 4, padx = 5, pady = 5)
+        self.save_button.grid(row = 0, column = 2, padx = (5, 0), pady = 5, sticky = "W")
+        self.screenshot_button.grid(row = 0, column = 3, padx = (0, 15), pady = 5, sticky = "W")
+        self.close_button.grid(row = 0, column = 4, padx = 5, pady = 5, sticky = "W")
 
         # Add font dropdown menus and text highlight checkbutton
         self.font_family_drop = self.create_font_family_drop()
@@ -42,6 +42,11 @@ class Notepad():
         self.font_family_drop.grid(row = 0, column = 5, padx = 5, pady = 5)
         self.font_option_drop.grid(row = 0, column = 6, padx = 5, pady = 5)
         self.highlight_check.grid(row = 0, column = 7, padx = 5, pady = 5)
+
+        # Add text input field colour selector button
+        self.colour_selector_button = self.create_colour_selector_button()
+
+        self.colour_selector_button.grid(row = 1, column = 1, columnspan = 2, padx = 5, pady = 5, ipadx = 5, ipady = 5)
 
         # Add font size slider and font size label to display font size
         self.font_size_slider = self.create_font_size_slider()
@@ -165,7 +170,7 @@ class Notepad():
         
         return self.font_size_value_label
 
-    # Text input field and text input colour option dropdwon menu
+    # Text input field and text input colour selector button
     
     def create_text_input(self):
         # Define variable for fonts
@@ -182,12 +187,12 @@ class Notepad():
         
         return self.text_input
     
-    def create_colour_option_button(self):
-        self.colour_option_button = ttk.Button(self.menu_frame,
+    def create_colour_selector_button(self):
+        self.colour_selector_button = ttk.Button(self.menu_frame,
                                                 text = "Select a Colour",
                                                 command = self.change_colour)
         
-        return self.colour_option_button
+        return self.colour_selector_button
 
     # BUTTON AND SLIDER FUNCTIONALITY
 
