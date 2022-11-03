@@ -1,6 +1,6 @@
 import tkinter
 import pyautogui
-from tkinter import ttk, StringVar, IntVar, scrolledtext, messagebox, filedialog, END
+from tkinter import ttk, IntVar, scrolledtext, colorchooser, messagebox, filedialog, END
 from PIL import ImageTk, Image
 from styles import *
 
@@ -165,7 +165,7 @@ class Notepad():
         
         return self.font_size_value_label
 
-    # Text input field
+    # Text input field and text input colour option dropdwon menu
     
     def create_text_input(self):
         # Define variable for fonts
@@ -181,9 +181,20 @@ class Notepad():
                                                     font = self.chosen_font)
         
         return self.text_input
-
+    
+    def create_colour_option_button(self):
+        self.colour_option_button = ttk.Button(self.menu_frame,
+                                                text = "Select a Colour",
+                                                command = self.change_colour)
+        
+        return self.colour_option_button
 
     # BUTTON AND SLIDER FUNCTIONALITY
+
+    def change_colour(self):
+        """Change given colour based on dropdown menu options."""
+
+        pass
 
     def change_font(self, event):
         """Change given font based on dropdown menu options."""
