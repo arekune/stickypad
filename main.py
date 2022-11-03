@@ -1,5 +1,6 @@
 import tkinter
 import pyautogui
+import time
 from tkinter import ttk, IntVar, scrolledtext, colorchooser, messagebox, filedialog, END
 from PIL import ImageTk, Image
 from styles import *
@@ -385,7 +386,8 @@ class Notepad():
 
         # Use a messagebox to confirm clearing note and creating a new note
         question = messagebox.askyesnocancel("New Note",
-        "Are you sure that you want to create a new note?\nUnsaved changes to current note will be deleted.")
+        "Are you sure that you want to create a new note?\n \
+        Unsaved changes to current note will be deleted.")
 
         if question == 1:
             # ScrolledText widget indexing starts at "1.0"
@@ -396,7 +398,8 @@ class Notepad():
         """Close the note and the window to quit program."""
 
         question = messagebox.askyesnocancel("Close Note",
-        "Are you sure that you want to close the note?\nUnsaved changes to current note will be deleted.")
+        "Are you sure that you want to close the note?\n \
+        Unsaved changes to current note will be deleted.")
 
         if question == 1:
             self.root.destroy()
@@ -440,7 +443,7 @@ class Notepad():
         The first three lines of file are the file's specified font family, font size, and font option.
         """
 
-        question = messagebox.askyesno("Open Note",
+        question = messagebox.askyesnocancel("Open Note",
         "Are you sure that you want to open another new note?\nUnsaved changes to current note will be deleted.")
 
         if question == 1:
@@ -478,9 +481,17 @@ class Notepad():
         Any similarly named file will be over written.
         """
 
-        x, y = self.text_input.winfo_rootx(), self.text_input.winfo_rooty()
-        w, h = self.text_input.winfo_width(), self.text_input.winfo_height()
-        pyautogui.screenshot("screenshot.png", region = (x, y, w, h))
+        question = messagebox.askyesnocancel("Screenshot",
+        "Do you want to take a screenshot of the current sticky note?\
+        Please move or rename any previously taken screenshots to avoid\
+        having them replaced by a new screenshot.")
+
+        if question == 1:
+            x, y = self.text_input.winfo_rootx(), self.text_input.winfo_rooty()
+            w, h = self.text_input.winfo_width(), self.text_input.winfo_height()
+            # Timer to ensure that Pyautogui doesn't screenshot the messagebox
+            time.sleep(0.5)
+            pyautogui.screenshot("screenshot.png", region = (x, y, w, h))
 
 
     def slider_changed(self, event):
