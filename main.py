@@ -66,6 +66,13 @@ class Notepad():
         self.font_size_label.grid(row = 1, column = 6, sticky = "W", padx = 5, pady = 5)
         self.font_size_value_label.grid(row = 1, column = 6, pady = 5)
 
+        # Add underline and overstrike buttons
+        self.underline_button = self.create_underline_button()
+        self.overstrike_button = self.create_overstrike_button()
+
+        self.underline_button.grid(row = 1, column = 6, padx = 5, pady = 5, ipady = 5, sticky = "E")
+        self.overstrike_button.grid(row = 1, column = 7, padx = 5, pady = 5, ipady = 5)
+
         # Add text input
         self.text_input = self.create_text_input()
 
@@ -182,13 +189,15 @@ class Notepad():
     def create_underline_button(self):
         self.underline_button = ttk.Button(self.menu_frame,
                                         text = "a͟b͟c͟",
+                                        width = 8,
                                         command = self.underline_tag)
         
         return self.underline_button
     
     def create_overstrike_button(self):
         self.overstrike_button = ttk.Button(self.menu_frame,
-                                        text = "a̶b̶c̶",
+                                        text = "a̵b̵c̵",
+                                        width = 8,
                                         command = self.overstrike_tag)
         
         return self.overstrike_button
@@ -233,6 +242,7 @@ class Notepad():
         self.colour_selector = colorchooser.askcolor(title = "Colour Selection")
         self.text_input.config(bg = self.colour_selector[1])
     
+
     def reset_all(self):
         """Reset all settings to default."""
 
@@ -242,6 +252,7 @@ class Notepad():
         self.font_size.set(12)
         self.highlight_on.set(0)
         self.font_size_value_label.configure(text = f"{self.font_size.get()}")
+
 
     def change_font(self, event):
         """Change text font based on dropdown menu options and font size slider value."""
@@ -262,10 +273,12 @@ class Notepad():
         if self.highlight_on.get() == 0:
             return self.text_input.config(font = self.chosen_font)
     
+
     def tag_update(self):
         """Update tag counter for dynamic tag name creation."""
         self.tags += 1
     
+
     def change_tag_font(self):
         """
         Change font configuration on sections of text highlighted with a tag.
@@ -284,6 +297,13 @@ class Notepad():
         except tkinter.TclError:
             # If no text is highlighted for tagging
             pass
+    
+    def underline_tag(self):
+        pass
+
+    def overstrike_tag(self):
+        pass
+
 
     def new_note(self):
         """Create a new note that clears the text input field."""
@@ -296,6 +316,7 @@ class Notepad():
             # ScrolledText widget indexing starts at "1.0"
             self.text_input.delete("1.0", END)
 
+
     def close_note(self):
         """Close the note and the window to quit program."""
 
@@ -304,6 +325,7 @@ class Notepad():
 
         if question == 1:
             self.root.destroy()
+
 
     def save_note(self):
         """
@@ -331,9 +353,11 @@ class Notepad():
             
                 # Write remaining text to the file with starting and ending indexes specified
                 file.write(self.text_input.get("1.0", END))
+
         except FileNotFoundError:
             # If no filename is given
             pass
+
 
     def open_note(self):
         """
@@ -365,9 +389,11 @@ class Notepad():
                     # Read the rest of the file and insert into the text field
                     text = file.read()
                     self.text_input.insert("1.0", text)
+
             except FileNotFoundError:
                 # If no filename is given
                 pass
+
 
     def take_screenshot(self):
         x, y = self.text_input.winfo_rootx(), self.text_input.winfo_rooty()
