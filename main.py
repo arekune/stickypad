@@ -14,6 +14,8 @@ class Notepad():
 
         self.root.config(bg = colours["root_colour"])
 
+        self.tags = 0
+
         # Add frames
         self.menu_frame = self.create_menu_frame()
         self.text_frame = self.create_text_frame()
@@ -221,15 +223,35 @@ class Notepad():
         pass
 
     def change_font(self, event):
-        """Change given font based on dropdown menu options."""
+        """Change text font based on dropdown menu options and font size slider value."""
+        if self.highlight_on.get() == 1:
+            self.change_tag_font()
 
-        if self.font_option_drop.get() == "None":
-            self.chosen_font = (self.font_family_drop.get(), self.font_size.get())
         else:
-            self.chosen_font = (self.font_family_drop.get(), self.font_size.get(), self.font_option_drop.get())
+            for tag in self.text_input.tag_names():
+                self.text_input.tag_delete(tag)
+
+            if self.font_option_drop.get() == "None":
+                self.chosen_font = (self.font_family_drop.get(), self.font_size.get())
+            else:
+                self.chosen_font = (self.font_family_drop.get(), self.font_size.get(), self.font_option_drop.get())
         
         # Change font style
-        self.text_input.config(font = self.chosen_font)
+        if self.highlight_on.get() == 0:
+            return self.text_input.config(font = self.chosen_font)
+    
+    def tag_update(self):
+        self.tags += 1
+    
+    def change_tag_font(self):
+        self.tag_update()
+        self.text_input.tag_config(f"{self.tags}", font = (self.font_family_drop.get(),
+                                                            self.font_size.get(),
+                                                            self.font_option_drop.get()))
+        try:
+            self.text_input.tag_add(f"{self.tags}", "sel.first", "sel.last")
+        except tkinter.TclError:
+            pass
 
     def new_note(self):
         """Create a new note that clears the text input field."""
