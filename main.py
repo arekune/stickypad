@@ -66,8 +66,8 @@ class Notepad():
         self.font_size_label = self.create_font_size_label()
         self.font_size_value_label = self.create_font_size_value_label()
 
-        self.font_size_slider.grid(row = 1, column = 4, columnspan = 2, sticky = "WE", padx = 5, pady = 5)
-        self.font_size_label.grid(row = 1, column = 6, sticky = "W", padx = 5, pady = 5)
+        self.font_size_slider.grid(row = 1, column = 4, columnspan = 2, padx = 5, pady = 5, sticky = "WE", )
+        self.font_size_label.grid(row = 1, column = 6, padx = 5, pady = 5, sticky = "W", )
         self.font_size_value_label.grid(row = 1, column = 6, pady = 5)
 
         # Add underline and overstrike buttons
@@ -82,12 +82,13 @@ class Notepad():
 
         self.text_input.pack()
 
-        # Add keybindings
+        # Add key bindings
         self.root.bind("<Control-n>", lambda event: self.new_note())
         self.root.bind("<Control-o>", lambda event: self.open_note())
         self.root.bind("<Control-s>", lambda event: self.save_note())
         self.root.bind("<Control-p>", lambda event: self.take_screenshot())
         self.root.bind("<Escape>", lambda event: self.close_note())
+
 
     # APP LAYOUT
 
