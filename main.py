@@ -298,11 +298,53 @@ class Notepad():
             # If no text is highlighted for tagging
             pass
     
+    
     def underline_tag(self):
-        pass
+        """Underline text.
+        
+        If highlighting is on, only highlighted text will be underlined with a tag.
+        Otherwise the whole text under current font configurations will be underlined.
+        """
+
+        self.tag_update()
+        self.text_input.tag_config(f"{self.tags}", font = (self.font_family_drop.get(),
+                                                            self.font_size.get(),
+                                                            self.font_option_drop.get()),
+                                                            underline = True)
+
+        if self.highlight_on.get() == 1:
+            try:
+                self.text_input.tag_add(f"{self.tags}", "sel.first", "sel.last")
+            except tkinter.TclError:
+                # If no text is highlighted for tagging
+                pass
+        
+        else:
+            self.text_input.tag_add(f"{self.tags}", "1.0", END)
+
 
     def overstrike_tag(self):
-        pass
+        """Overstrike text.
+        
+        If highlighting is on, only highlighted text will be overstruck with a tag.
+        Otherwise the whole text under current font configurations will be overstruck.
+        """
+        
+        self.tag_update()
+        self.text_input.tag_config(f"{self.tags}", font = (self.font_family_drop.get(),
+                                                            self.font_size.get(),
+                                                            self.font_option_drop.get()),
+                                                            overstrike = True)
+
+        if self.highlight_on.get() == 1:
+            try:
+                self.text_input.tag_add(f"{self.tags}", "sel.first", "sel.last")
+            except tkinter.TclError:
+                # If no text is highlighted for tagging
+                pass
+        
+        else:
+            self.text_input.tag_add(f"{self.tags}", "1.0", END)
 
 
     def new_note(self):
