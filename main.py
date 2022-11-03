@@ -159,7 +159,7 @@ class Notepad():
     
     def create_font_size_value_label(self):
         self.font_size_value_label = tkinter.Label(self.menu_frame,
-                                                text = self.get_font_size_value(),
+                                                text = f"{self.font_size.get()}",
                                                 bg = colours["menu_colour"])
         
         return self.font_size_value_label
@@ -276,11 +276,8 @@ class Notepad():
         pyautogui.screenshot("screenshot.png", region = (x, y, w, h))
 
     def slider_changed(self, event):
-        self.font_size_value_label.configure(text = self.get_font_size_value())
+        self.font_size_value_label.configure(text = f"{self.font_size.get()}")
         self.change_font(event)
-
-    def get_font_size_value(self):
-        return f"{self.font_size.get()}"
 
 
     # RUN PROGRAM
