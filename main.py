@@ -216,7 +216,27 @@ class Notepad():
             self.root.destroy()
 
     def save_note(self):
-        pass
+        """
+        Save the note as a txt file.
+        The first three lines saved to the file are saved as font family, font size, and font option.
+        Font size is converted to a string for the file.
+        """
+
+        # Use filedialog (imported from tkinter) to ask user for file path and file name
+        # this will initialize a file path and file name for us to use when writing to a file
+        save_name = filedialog.asksaveasfilename(initialdir = "./",
+                                                title = "Save Note",
+                                                defaultextension = ".txt",
+                                                filetypes = (("Text Files", "*.txt"), ("All Files", "*.*")))
+        
+        # Write first three lines of font specification
+        with open(save_name, "w") as file:
+            file.write(self.font_family.get() + "\n")
+            file.write(str(self.font_size.get()) + "\n")
+            file.write(self.font_option.get() + "\n")
+        
+            # Write remaining text to the file with starting and ending indexes specified
+            file.write(self.text_input.get("1.0", END))
 
     def open_note(self):
         pass
