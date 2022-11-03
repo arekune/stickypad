@@ -148,7 +148,7 @@ class Notepad():
         return self.font_size_slider
         
     def create_font_size_label(self):
-        self.font_size_label = tkinter.Label(self.menu_frame, text = f"Font size: {self.current_value.get()}")
+        self.font_size_label = tkinter.Label(self.menu_frame, text = f"Font size: {self.font_size.get()}")
         return self.font_size_label
     
     # Text input field
@@ -186,10 +186,10 @@ class Notepad():
     def take_screenshot(self):
         pass
 
-    def change_font(self):
+    def change_font(self, event):
         pass
 
-    def slider_changed(self):
+    def slider_changed(self, event):
         pass
 
 
