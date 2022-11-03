@@ -141,7 +141,7 @@ class Notepad():
     def create_font_size_slider(self):
         self.font_size = IntVar()
         self.font_size_slider = ttk.Scale(self.menu_frame,
-                                        from_ = 0,
+                                        from_ = 1,
                                         to = 100,
                                         orient = "horizontal",
                                         variable = self.font_size,
@@ -173,8 +173,8 @@ class Notepad():
         # Set default width and height to be more than the window size so that
         # the text field size is constant relative to root window (i.e. scales with root window)
         self.text_input = scrolledtext.ScrolledText(self.text_frame,
-                                                    width = 1000,
-                                                    height = 100,
+                                                    width = 1500,
+                                                    height = 200,
                                                     bg = colours["text_colour"],
                                                     font = self.chosen_font)
         
