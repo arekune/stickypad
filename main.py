@@ -79,7 +79,13 @@ class Notepad():
         self.text_input = self.create_text_input()
 
         self.text_input.pack()
-    
+
+        # Add keybindings
+        self.root.bind("<Control-n>", lambda event: self.new_note())
+        self.root.bind("<Control-o>", lambda event: self.open_note())
+        self.root.bind("<Control-s>", lambda event: self.save_note())
+        self.root.bind("<Control-p>", lambda event: self.take_screenshot())
+        self.root.bind("<Escape>", lambda event: self.close_note())
 
     # APP LAYOUT
 
@@ -386,8 +392,7 @@ class Notepad():
 
         # Use a messagebox to confirm clearing note and creating a new note
         question = messagebox.askyesnocancel("New Note",
-        "Are you sure that you want to create a new note?\n \
-        Unsaved changes to current note will be deleted.")
+        "Are you sure that you want to create a new note?\nUnsaved changes to current note will be deleted.")
 
         if question == 1:
             # ScrolledText widget indexing starts at "1.0"
@@ -398,8 +403,7 @@ class Notepad():
         """Close the note and the window to quit program."""
 
         question = messagebox.askyesnocancel("Close Note",
-        "Are you sure that you want to close the note?\n \
-        Unsaved changes to current note will be deleted.")
+        "Are you sure that you want to close the note?\nUnsaved changes to current note will be deleted.")
 
         if question == 1:
             self.root.destroy()
@@ -412,7 +416,7 @@ class Notepad():
         Font size is converted to a string for the file.
 
         Only the font configurations chosen when saving will be preserved and later applied to
-        a text file opened again as a note in Stickypad.
+        a text file opened again as a note in Stickypad. Custom colours are not saved.
         """
 
         # Use filedialog (imported from tkinter) to ask user for file path and file name
