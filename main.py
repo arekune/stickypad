@@ -11,6 +11,7 @@ class Notepad():
         self.root.title("Stickypad")
         self.root.iconbitmap("icons/sticky_note.ico")
         self.root.geometry("900x700")
+        self.root.resizable(0, 0)
 
         self.root.config(bg = colours["root_colour"])
 
