@@ -195,7 +195,16 @@ class Notepad():
         self.text_input.config(font = self.chosen_font)
 
     def new_note(self):
-        pass
+        """Create a new note that clears the text input field."""
+
+        # Use a messagebox to confirm clearing note and creating a new note
+        # messagebox module imported from tkinter
+        question = messagebox.askyesno("New Note",
+        "Are you sure that you want to create a new note?\nUnsaved changes to current note will be deleted.")
+
+        if question == 1:
+            # ScrolledText widget indexing starts at "1.0"
+            self.text_input.delete("1.0", END)
 
     def close_note(self):
         pass
