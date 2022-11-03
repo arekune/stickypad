@@ -271,8 +271,8 @@ class Notepad():
                 self.text_input.insert("1.0", text)
 
     def take_screenshot(self):
-        x, y = self.text_frame.winfo_rootx(), self.text_frame.winfo_rooty()
-        w, h = self.text_frame.winfo_width(), self.text_frame.winfo_height()
+        x, y = self.text_input.winfo_rootx(), self.text_input.winfo_rooty()
+        w, h = self.text_input.winfo_width(), self.text_input.winfo_height()
         pyautogui.screenshot("screenshot.png", region = (x, y, w, h))
 
     def slider_changed(self, event):
