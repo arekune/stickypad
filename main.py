@@ -207,7 +207,13 @@ class Notepad():
             self.text_input.delete("1.0", END)
 
     def close_note(self):
-        pass
+        """Close the note and the window (quit program)."""
+
+        question = messagebox.askyesnocancel("Close Note",
+        "Are you sure that you want to close the note?\nUnsaved changes to current note will be deleted.")
+
+        if question == 1:
+            self.root.destroy()
 
     def save_note(self):
         pass
