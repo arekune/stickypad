@@ -18,7 +18,7 @@ font_families = [
     "SimSun",
     "Tahoma",
     "Terminal",
-    "Times News Roman",
+    "Times New Roman",
     "Verdana"
 ]
 
