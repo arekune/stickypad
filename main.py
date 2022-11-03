@@ -201,7 +201,7 @@ class Notepad():
         pass
 
     def slider_changed(self, event):
-        pass
+        self.font_size_value_label.configure(text = self.get_font_size_value())
 
     def get_font_size_value(self):
         return f"{self.font_size.get()}"
