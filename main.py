@@ -299,6 +299,7 @@ class Notepad():
 
     def change_font(self, event):
         """Change text font based on dropdown menu options and font size slider value."""
+        
         if self.highlight_on.get() == 1:
             self.change_tag_font()
 
