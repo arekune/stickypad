@@ -183,6 +183,17 @@ class Notepad():
 
     # BUTTON AND SLIDER FUNCTIONALITY
 
+    def change_font(self, event):
+        """Change given font based on dropdown menu options."""
+
+        if self.font_option_drop.get() == "None":
+            self.chosen_font = (self.font_family_drop.get(), self.font_size.get())
+        else:
+            self.chosen_font = (self.font_family_drop.get(), self.font_size.get(), self.font_option_drop.get())
+        
+        # Change font style
+        self.text_input.config(font = self.chosen_font)
+
     def new_note(self):
         pass
 
@@ -198,11 +209,9 @@ class Notepad():
     def take_screenshot(self):
         pass
 
-    def change_font(self, event):
-        pass
-
     def slider_changed(self, event):
         self.font_size_value_label.configure(text = self.get_font_size_value())
+        self.change_font(event)
 
     def get_font_size_value(self):
         return f"{self.font_size.get()}"
