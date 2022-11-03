@@ -42,6 +42,13 @@ class Notepad():
         self.font_option_drop.grid(row = 0, column = 6, padx = 5, pady = 5)
         self.highlight_check.grid(row = 0, column = 7, padx = 5, pady = 5)
 
+        # Add font size slider and font size label to display font size
+        self.font_size_slider = self.create_font_size_slider()
+        self.font_size_label = self.create_font_size_label()
+
+        self.font_size_slider.grid(row = 1, column = 4, columnspan = 2, sticky = "WE", padx = 5, pady = 5)
+        self.font_size_label.grid(row = 1, columnspan = 6, padx = 5, pady = 5)
+
         # Add text input
         self.text_input = self.create_text_input()
 
