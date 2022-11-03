@@ -10,7 +10,7 @@ class Notepad():
         self.root = master
         self.root.title("Stickypad")
         self.root.iconbitmap("icons/sticky_note.ico")
-        self.root.geometry("800x600")
+        self.root.geometry("900x700")
 
         self.root.config(bg = colours["root_colour"])
 
@@ -49,7 +49,7 @@ class Notepad():
         self.font_size_value_label = self.create_font_size_value_label()
 
         self.font_size_slider.grid(row = 1, column = 4, columnspan = 2, sticky = "WE", padx = 5, pady = 5)
-        self.font_size_label.grid(row = 1, column = 6, padx = 5, pady = 5, sticky = "W")
+        self.font_size_label.grid(row = 1, column = 6, sticky = "W", padx = 5, pady = 5)
         self.font_size_value_label.grid(row = 1, column = 6, pady = 5)
 
         # Add text input
@@ -57,6 +57,7 @@ class Notepad():
 
         self.text_input.pack()
     
+
     # APP LAYOUT
 
     # Frames
@@ -199,7 +200,6 @@ class Notepad():
         """Create a new note that clears the text input field."""
 
         # Use a messagebox to confirm clearing note and creating a new note
-        # messagebox module imported from tkinter
         question = messagebox.askyesnocancel("New Note",
         "Are you sure that you want to create a new note?\nUnsaved changes to current note will be deleted.")
 
@@ -208,7 +208,7 @@ class Notepad():
             self.text_input.delete("1.0", END)
 
     def close_note(self):
-        """Close the note and the window (quit program)."""
+        """Close the note and the window to quit program."""
 
         question = messagebox.askyesnocancel("Close Note",
         "Are you sure that you want to close the note?\nUnsaved changes to current note will be deleted.")
@@ -222,7 +222,7 @@ class Notepad():
         The first three lines saved to the file are saved as font family, font size, and font option.
         Font size is converted to a string for the file.
 
-        Only the font configurations displayed in the font dropdown menus, font size slider
+        Only the font configurations displayed in the font dropdown menus, font size sliderFINISH THIS!!!
         """
 
         # Use filedialog (imported from tkinter) to ask user for file path and file name
@@ -263,7 +263,7 @@ class Notepad():
                 self.font_size.set(int(file.readline().strip()))
                 self.font_option_drop.set(file.readline().strip())
 
-                # Call change_font function for these .set() methods and pass in arbitrary value
+                # Call change_font function to implement the .set() methods, pass in arbitrary value
                 self.change_font(1)
 
                 # Read the rest of the file and insert into the text field
