@@ -3,6 +3,7 @@ import pyautogui
 from tkinter import ttk, IntVar, scrolledtext, colorchooser, messagebox, filedialog, END
 from PIL import ImageTk, Image
 from styles import *
+from tooltip import CreateToolTip
 
 class Notepad():
 
@@ -96,26 +97,41 @@ class Notepad():
     def create_new_button(self):
         self.new_button_image = ImageTk.PhotoImage(Image.open("icons/document-icon.png"))
         self.button = tkinter.Button(self.menu_frame, image = self.new_button_image, command = self.new_note)
+
+        self.new_button_tooltip = CreateToolTip(self.button, "Create a new note")
+
         return self.button
     
     def create_open_button(self):
         self.open_button_image = ImageTk.PhotoImage(Image.open("icons/folder-open-icon.png"))
         self.button = tkinter.Button(self.menu_frame, image = self.open_button_image, command = self.open_note)
+
+        self.open_button_tooltip = CreateToolTip(self.button, "Open a saved note")
+
         return self.button
     
     def create_save_button(self):
         self.save_button_image = ImageTk.PhotoImage(Image.open("icons/disk-icon.png"))
         self.button = tkinter.Button(self.menu_frame, image = self.save_button_image, command = self.save_note)
+
+        self.save_button_tooltip = CreateToolTip(self.button, "Save note")
+
         return self.button
     
     def create_screenshot_button(self):
         self.screenshot_button_image = ImageTk.PhotoImage(Image.open("icons/camera-icon.png"))
         self.button = tkinter.Button(self.menu_frame, image = self.screenshot_button_image, command = self.take_screenshot)
+        
+        self.screenshot_button_tooltip = CreateToolTip(self.button, "Take a screenshot of sticky note")
+
         return self.button
     
     def create_close_button(self):
         self.close_button_image = ImageTk.PhotoImage(Image.open("icons/close-icon.png"))
         self.button = tkinter.Button(self.menu_frame, image = self.close_button_image, command = self.close_note)
+
+        self.close_button_tooltip = CreateToolTip(self.button, "Close note and exit program")
+
         return self.button
 
     # Font dropdown menus, sliders and highlighting toggle
@@ -127,6 +143,8 @@ class Notepad():
                                             font = ("Cambria", 10),
                                             justify = "center",
                                             height = 15)
+        
+        self.font_family_tooltip = CreateToolTip(self.font_family_drop, "Choose font family")
         
         self.font_family_drop.set("Terminal")
         self.font_family_drop.bind("<<ComboboxSelected>>", self.change_font)
@@ -140,6 +158,8 @@ class Notepad():
                                             font = ("Cambria", 10),
                                             justify = "center",
                                             height = 15)
+        
+        self.font_option_tooltip = CreateToolTip(self.font_option_drop, "Choose font option")
         
         self.font_option_drop.set("normal")
         self.font_option_drop.bind("<<ComboboxSelected>>", self.change_font)
@@ -158,6 +178,8 @@ class Notepad():
                                                     width = 10,
                                                     bg = colours["menu_colour"])
         
+        self.font_highlight_tooltip = CreateToolTip(self.highlight_check, "Toggle highlighting on and off")
+        
         self.highlight_on.set(0)
         return self.highlight_check
     
@@ -169,6 +191,8 @@ class Notepad():
                                         orient = "horizontal",
                                         variable = self.font_size,
                                         command = self.slider_changed)
+        
+        self.font_size_tooltip = CreateToolTip(self.font_size_slider, "Choose font size between 1 and 100")
 
         self.font_size.set(12)
         return self.font_size_slider
@@ -192,6 +216,8 @@ class Notepad():
                                         width = 8,
                                         command = self.underline_tag)
         
+        self.underline_tooltip = CreateToolTip(self.underline_button, "Underline text")
+        
         return self.underline_button
     
     def create_overstrike_button(self):
@@ -199,6 +225,8 @@ class Notepad():
                                         text = "a̵b̵c̵",
                                         width = 8,
                                         command = self.overstrike_tag)
+        
+        self.overstrike_tooltip = CreateToolTip(self.overstrike_button, "Overstrike text")
         
         return self.overstrike_button
 
@@ -224,12 +252,17 @@ class Notepad():
                                                 text = "Select a Colour",
                                                 command = self.change_colour)
         
+        self.colour_selector_tooltip = CreateToolTip(self.colour_selector_button,
+                                                    "Create and choose custom color for sticky note")
+        
         return self.colour_selector_button
     
     def create_reset_button(self):
         self.reset_button = ttk.Button(self.menu_frame,
                                         text = "Reset",
                                         command = self.reset_all)
+        
+        self.reset_tooltip = CreateToolTip(self.reset_button, "Reset all settings")
         
         return self.reset_button
 
