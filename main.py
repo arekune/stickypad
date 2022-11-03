@@ -45,9 +45,11 @@ class Notepad():
         # Add font size slider and font size label to display font size
         self.font_size_slider = self.create_font_size_slider()
         self.font_size_label = self.create_font_size_label()
+        self.font_size_value_label = self.create_font_size_value_label()
 
         self.font_size_slider.grid(row = 1, column = 4, columnspan = 2, sticky = "WE", padx = 5, pady = 5)
-        self.font_size_label.grid(row = 1, columnspan = 6, padx = 5, pady = 5)
+        self.font_size_label.grid(row = 1, column = 6, padx = 5, pady = 5, sticky = "W")
+        self.font_size_value_label.grid(row = 1, column = 6, pady = 5)
 
         # Add text input
         self.text_input = self.create_text_input()
@@ -148,9 +150,18 @@ class Notepad():
         return self.font_size_slider
         
     def create_font_size_label(self):
-        self.font_size_label = tkinter.Label(self.menu_frame, text = f"Font size: {self.font_size.get()}")
+        self.font_size_label = tkinter.Label(self.menu_frame,
+                                            text = "Font size:",
+                                            bg = colours["menu_colour"])
         return self.font_size_label
     
+    def create_font_size_value_label(self):
+        self.font_size_value_label = tkinter.Label(self.menu_frame,
+                                                text = self.get_font_size_value(),
+                                                bg = colours["menu_colour"])
+        
+        return self.font_size_value_label
+
     # Text input field
     
     def create_text_input(self):
@@ -191,6 +202,9 @@ class Notepad():
 
     def slider_changed(self, event):
         pass
+
+    def get_font_size_value(self):
+        return f"{self.font_size.get()}"
 
 
     # RUN PROGRAM
