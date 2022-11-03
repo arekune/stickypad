@@ -4,8 +4,21 @@ colours = {
     "root_colour": "#6c809a"
 }
 
-font_families = ["Terminal", "Modern", "Script", "Courier", "Arial", "Calibri", "Cambria", "Georgia",
-                "MS Gothic", "SimSun", "Tahoma", "Times New Roman", "Verdana", "Wingdings"]
+font_families = [
+    "Arial",
+    "Calibri",
+    "Cambria",
+    "Courier",
+    "Georgia",
+    "Modern",
+    "MS Gothic",
+    "Script",
+    "SimSun",
+    "Tahoma",
+    "Terminal",
+    "Times News Roman",
+    "Verdana"
+]
 
 font_sizes = [8, 10, 12, 14, 16, 20, 24, 32, 48, 64, 72, 96]
 

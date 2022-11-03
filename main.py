@@ -102,9 +102,10 @@ class Notepad():
                                             state = "readonly",
                                             value = font_families,
                                             font = ("Cambria", 10),
-                                            justify = "center", height = 15)
+                                            justify = "center",
+                                            height = 15)
         
-        self.font_family_drop.set(font_families[0])
+        self.font_family_drop.set("Terminal")
         self.font_family_drop.bind("<<ComboboxSelected>>", self.change_font)
 
         return self.font_family_drop
