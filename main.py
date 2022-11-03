@@ -194,7 +194,13 @@ class Notepad():
         
         return self.colour_selector_button
     
-    
+    def create_reset_button(self):
+        self.reset_button = ttk.Button(self.menu_frame,
+                                        text = "Reset",
+                                        command = self.reset_all)
+        
+        return self.reset_button
+        
 
     # BUTTON AND SLIDER FUNCTIONALITY
 
