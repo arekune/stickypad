@@ -1,3 +1,5 @@
+# Colour and font configuration module
+
 colours = {
     "text_colour": "#fffacd",
     "menu_colour": "#dbd9db",
