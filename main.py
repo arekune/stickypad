@@ -1,4 +1,5 @@
 import tkinter
+import pyautogui
 from tkinter import ttk, StringVar, IntVar, scrolledtext, messagebox, filedialog, END
 from PIL import ImageTk, Image
 from styles import *
@@ -270,7 +271,9 @@ class Notepad():
                 self.text_input.insert("1.0", text)
 
     def take_screenshot(self):
-        pass
+        x, y = self.text_frame.winfo_rootx(), self.text_frame.winfo_rooty()
+        w, h = self.text_frame.winfo_width(), self.text_frame.winfo_height()
+        pyautogui.screenshot("screenshot.png", region = (x, y, w, h))
 
     def slider_changed(self, event):
         self.font_size_value_label.configure(text = self.get_font_size_value())
