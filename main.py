@@ -233,9 +233,9 @@ class Notepad():
         
         # Write first three lines of font specification
         with open(save_name, "w") as file:
-            file.write(self.font_family.get() + "\n")
+            file.write(self.font_family_drop.get() + "\n")
             file.write(str(self.font_size.get()) + "\n")
-            file.write(self.font_option.get() + "\n")
+            file.write(self.font_option_drop.get() + "\n")
         
             # Write remaining text to the file with starting and ending indexes specified
             file.write(self.text_input.get("1.0", END))
