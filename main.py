@@ -136,9 +136,9 @@ class Notepad():
         return self.font_option_drop
     
     def create_highlight_check(self):
-        self.highlight = IntVar()
+        self.highlight_on = IntVar()
         self.highlight_check = tkinter.Checkbutton(self.menu_frame,
-                                                    variable = self.highlight,
+                                                    variable = self.highlight_on,
                                                     onvalue = 1,
                                                     offvalue = 0,
                                                     text = "Highlighting",
@@ -147,7 +147,7 @@ class Notepad():
                                                     width = 10,
                                                     bg = colours["menu_colour"])
         
-        self.highlight.set(0)
+        self.highlight_on.set(0)
         return self.highlight_check
     
     def create_font_size_slider(self):
