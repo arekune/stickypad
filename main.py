@@ -14,13 +14,13 @@ class Notepad():
         self.root = master
         self.root.title("Stickypad")
         self.root.iconbitmap("icons/sticky_note.ico")
-        self.root.geometry("900x700")
+        self.root.geometry("900x900")
         self.root.resizable(0, 0)
 
         self.root.config(bg = colours["root_colour"])
 
-        # Counter for number of text tags (see function 'change_tag_font')
-        self.tags = 0
+        # Counter for number of text tags (set by 'update tags')
+        self._tags = 0
 
         # Add frames
         self.menu_frame = self.create_menu_frame()
@@ -200,11 +200,11 @@ class Notepad():
                                         to = 100,
                                         orient = "horizontal",
                                         variable = self.font_size,
-                                        command = self.slider_changed)
+                                        command = self.move_slider)
         
         self.font_size_tooltip = CreateToolTip(self.font_size_slider, "Choose font size between 1 and 100")
 
-        self.font_size.set(12)
+        self.font_size.set(20)
         return self.font_size_slider
         
     def create_font_size_label(self):
@@ -250,8 +250,8 @@ class Notepad():
         # Set default width and height to be more than the window size so that
         # the text field size is constant relative to root window (i.e. scales with root window)
         self.text_input = scrolledtext.ScrolledText(self.text_frame,
-                                                    width = 1500,
-                                                    height = 200,
+                                                    width = 2000,
+                                                    height = 400,
                                                     bg = colours["text_colour"],
                                                     font = self.chosen_font)
         
@@ -292,14 +292,14 @@ class Notepad():
         self.text_input.config(bg = colours["text_colour"])
         self.font_family_drop.set("Terminal")
         self.font_option_drop.set("normal")
-        self.font_size.set(12)
+        self.font_size.set(20)
         self.highlight_on.set(0)
         self.font_size_value_label.configure(text = f"{self.font_size.get()}")
 
 
     def change_font(self, event):
         """Change text font based on dropdown menu options and font size slider value."""
-        
+
         if self.highlight_on.get() == 1:
             self.change_tag_font()
 
@@ -318,9 +318,9 @@ class Notepad():
             return self.text_input.config(font = self.chosen_font)
     
 
-    def tag_update(self):
+    def update_tags(self):
         """Update tag counter for dynamic tag name creation."""
-        self.tags += 1
+        self._tags += 1
     
 
     def change_tag_font(self):
@@ -331,13 +331,13 @@ class Notepad():
         the current value of the counter as the tag name.
         """
 
-        self.tag_update()
-        self.text_input.tag_config(f"{self.tags}", font = (self.font_family_drop.get(),
+        self.update_tags()
+        self.text_input.tag_config(f"{self._tags}", font = (self.font_family_drop.get(),
                                                             self.font_size.get(),
                                                             self.font_option_drop.get()))
 
         try:
-            self.text_input.tag_add(f"{self.tags}", "sel.first", "sel.last")
+            self.text_input.tag_add(f"{self._tags}", "sel.first", "sel.last")
         except tkinter.TclError:
             # If no text is highlighted for tagging
             pass
@@ -350,21 +350,22 @@ class Notepad():
         Otherwise the whole text under current font configurations will be underlined.
         """
 
-        self.tag_update()
-        self.text_input.tag_config(f"{self.tags}", font = (self.font_family_drop.get(),
+        self.update_tags()
+        self.text_input.tag_config(f"{self._tags}", font = (self.font_family_drop.get(),
                                                             self.font_size.get(),
                                                             self.font_option_drop.get()),
                                                             underline = True)
 
         if self.highlight_on.get() == 1:
             try:
-                self.text_input.tag_add(f"{self.tags}", "sel.first", "sel.last")
+                self.text_input.tag_add(f"{self._tags}", "sel.first", "sel.last")
             except tkinter.TclError:
                 # If no text is highlighted for tagging
                 pass
         
         else:
-            self.text_input.tag_add(f"{self.tags}", "1.0", END)
+            # ScrolledText widget indexing starts at "1.0"
+            self.text_input.tag_add(f"{self._tags}", "1.0", END)
 
 
     def overstrike_tag(self):
@@ -374,21 +375,22 @@ class Notepad():
         Otherwise the whole text under current font configurations will be overstruck.
         """
         
-        self.tag_update()
-        self.text_input.tag_config(f"{self.tags}", font = (self.font_family_drop.get(),
+        self.update_tags()
+        self.text_input.tag_config(f"{self._tags}", font = (self.font_family_drop.get(),
                                                             self.font_size.get(),
                                                             self.font_option_drop.get()),
                                                             overstrike = True)
 
         if self.highlight_on.get() == 1:
             try:
-                self.text_input.tag_add(f"{self.tags}", "sel.first", "sel.last")
+                self.text_input.tag_add(f"{self._tags}", "sel.first", "sel.last")
             except tkinter.TclError:
                 # If no text is highlighted for tagging
                 pass
         
         else:
-            self.text_input.tag_add(f"{self.tags}", "1.0", END)
+            # ScrolledText widget indexing starts at "1.0"
+            self.text_input.tag_add(f"{self._tags}", "1.0", END)
 
 
     def new_note(self):
@@ -502,7 +504,7 @@ class Notepad():
             pyautogui.screenshot("screenshot.png", region = (x, y, w, h))
 
 
-    def slider_changed(self, event):
+    def move_slider(self, event):
         """
         Set the font size value label when the slider is moved.
         'Change_font' function is called to apply the change in font size to text.
