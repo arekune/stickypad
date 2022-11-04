@@ -296,6 +296,10 @@ class Notepad():
         self.highlight_on.set(0)
         self.font_size_value_label.configure(text = f"{self.font_size.get()}")
 
+        # Delete all tags in text
+        for tag in self.text_input.tag_names():
+            self.text_input.tag_delete(tag)
+
 
     def change_font(self, event):
         """Change text font based on dropdown menu options and font size slider value."""
