@@ -6,7 +6,7 @@ import time
 from tkinter import ttk, IntVar, scrolledtext, colorchooser, messagebox, filedialog, END
 from PIL import ImageTk, Image
 from styles import *
-from tooltip import CreateToolTip
+from tooltips import CreateToolTip
 
 class Notepad():
 
