@@ -418,11 +418,11 @@ class Notepad():
     def save_note(self):
         """
         Save the note as a txt file.
-        The first three lines saved to the file are saved as font family, font size, and font option.
-        Font size is converted to a string for the file.
+        The first four lines saved to the file are saved as font family, font size, font option,
+        and text input field colour. Font size is converted to a string for the file.
 
         Only the font configurations chosen when saving will be preserved and later applied to
-        a text file opened again as a note in Stickypad. Custom colours are not saved.
+        a text file opened again as a note in Stickypad. Custom colours are saved.
         """
 
         # Use filedialog (imported from tkinter) to ask user for file path and file name
@@ -432,12 +432,17 @@ class Notepad():
                                                 defaultextension = ".txt",
                                                 filetypes = (("Text Files", "*.txt"), ("All Files", "*.*")))
         
-        # Write first three lines of font specification
+        # Write first four lines of font specification
         try:
             with open(save_name, "w") as file:
                 file.write(self.font_family_drop.get() + "\n")
                 file.write(str(self.font_size.get()) + "\n")
                 file.write(self.font_option_drop.get() + "\n")
+
+                if self.text_input.cget("bg") == colours["text_colour"]:
+                    file.write(colours["text_colour"] + "\n")
+                else:
+                    file.write(self.colour_selector[1] + "\n")
             
                 # Write remaining text to the file with starting and ending indexes specified
                 file.write(self.text_input.get("1.0", END))
@@ -450,7 +455,9 @@ class Notepad():
     def open_note(self):
         """
         Open a previously saved note.
-        The first three lines of file are the file's specified font family, font size, and font option.
+
+        The first three lines of file are the file's specified font family, font size,
+        font option, and text input field colour.
         """
 
         question = messagebox.askyesnocancel("Open Note",
@@ -466,10 +473,11 @@ class Notepad():
                 with open(open_name, "r+") as file:
                     self.text_input.delete("1.0", END)
 
-                    # Newline characters at the end of the first three lines need to be stripped
+                    # Newline characters at the end of the first four lines need to be stripped
                     self.font_family_drop.set(file.readline().strip())
                     self.font_size.set(int(file.readline().strip()))
                     self.font_option_drop.set(file.readline().strip())
+                    self.text_input.config(bg = file.readline().strip())
 
                     # Call change_font function to implement the .set() methods, pass in arbitrary value
                     self.change_font(1)
