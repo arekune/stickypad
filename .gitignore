@@ -2,5 +2,6 @@
 
 .vscode
 **/__pycache__/
+icons_legacy
 
 screenshot.png

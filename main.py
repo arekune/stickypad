@@ -19,7 +19,7 @@ class Notepad():
 
         self.root.config(bg = colours["root_colour"])
 
-        # Counter for number of text tags (set by 'update tags')
+        # Counter for number of text tags (set by 'update_tags' method)
         self._tags = 0
 
         # Add frames
