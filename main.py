@@ -460,7 +460,7 @@ class Notepad():
         """
         Open a previously saved note.
 
-        The first three lines of file are the file's specified font family, font size,
+        The first four lines are the file's specified font family, font size,
         font option, and text input field colour.
         """
 
